@@ -3,7 +3,10 @@ In this chapter, we are going to go from small applications to OTP-compliant app
 ## 11.1 OTP applications
 And OTP aplication is able to be started with a single function call, even though it uses multiple modules and may depend on other systems.
 ### 11.1.1 Creating applications with the mix tool
+The mix tool uses? creates? a file with the application's name and version, description, a list of modules in the application, dependencies, and an optional callback module. You can use the Application module to start and stop the application.
+mix new hello_world --sup creates a folder with the minimum mix project skeleton. The --sup parameter makes the mix tool generate the callback module and start the empty supervisor.
 ### 11.1.2 The application behavior
+HelloWorld.Application.start/2 is the function that will start the application. This starts the top-level process of the system, usually a supervisor, and returns a tuple of {:ok, pid} or {:error, reason}
 ### 11.1.3 Starting the application
 ### 11.1.4 Library applications
 ### 11.1.5 Creating a to-do application
