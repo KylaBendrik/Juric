@@ -1,5 +1,7 @@
 # 11 Working with components
+In this chapter, we are going to go from small applications to OTP-compliant applications and webservers, as well as learning about how to work with dependencies and how to configure applications.
 ## 11.1 OTP applications
+And OTP aplication is able to be started with a single function call, even though it uses multiple modules and may depend on other systems.
 ### 11.1.1 Creating applications with the mix tool
 ### 11.1.2 The application behavior
 ### 11.1.3 Starting the application
