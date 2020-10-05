@@ -45,6 +45,16 @@ Turns into
 ```
 It says "inside Todo.CacheTest you needed to manually start the supporting processes, such aas cache. With the system turned into a proper OTP application, this is not the case anymore, as you can see..." But doesn't server_process still expect a `cache` argument?
 ### 11.1.6 The application folder structure
+Mix projects use three environments: dev, test, and prod. You can specify an environment with `MIX_ENV`
+- dev: 
+  - in a version compiled for development, you may want extra debug logging
+  - in most mix tasks, default environment is dev.
+- prod:
+  - in production, you don't want debug logging
+  - To compile the code for prod, you can invoke `MIX_ENV=prod mix compile`
+- test:
+  - you may want a different database to prevent tests from polluting your dev database.
+  - test is the default environment when you invoke `mix test`
 ## 11.2 Working with Dependencies
 ### 11.2.1 Adding a dependency
 #### Listing 11.4 Adding an external dependency (todo_poolboy/mix.exs)
