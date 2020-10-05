@@ -1,5 +1,13 @@
 # 11 Working with components
+We are learning in this chapter about OTP-Apps. 
+They will be helpful tools for making our systums reuseable.
+The to-do list is getting upgraded to handle 3nd party 
+libs and HTTP interface.  
+
 ## 11.1 OTP applications
+OTP-Apps are a component that has mulitiple modules.
+
+
 ### 11.1.1 Creating applications with the mix tool
 ### 11.1.2 The application behavior
 ### 11.1.3 Starting the application
