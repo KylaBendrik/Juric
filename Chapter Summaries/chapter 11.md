@@ -62,10 +62,24 @@ We'll be working with the Poolboy library, which provides an implementation of a
 #### Listing 11.4 Adding an external dependency (todo_poolboy/mix.exs)
 In the `mix.exs` file, add `:poolboy` to the list of dependencies. There are probably example dependencies listed as comments in this function, but probably no real ones yet.
 ### 11.2.2 Adapting the pool
+This part describes how to use the Poolboy toolkit to fit our needs. You use checkout and checkin to ask for and "return" a worker process, like a library book. This way, the manager can know which worker processes are being used at any time. This also lets the manager start a new worker process if one crashes.
 #### Listing 11.5 Starting a Poolboy-powered pool (todo_poolboy/lib/todo/database.ex)
+In the good old database file, we need to add a couple of lines telling the poolboy module to start working. The `child_spec/1` function changes dramatically.
+:poolboy.child_spec/3 
+1. ID of child
+2. pool options:
+  1. :name states that the manager process should be locally registered
+  2. :worker_module option specifies the module that will power each worker process
+  3. :size specifies the pool size (I used the @pool_size we made earlier. The book doesn't)
+3. list of arguments passed to the start_link of each worker when they're being started.
+
+For some reason, this is giving me some issues...It says that :poolboy.child_spec/3 breaks the contract. ?
 #### Listing 11.6 Adapted operation functions (todo_poolboy/lib/todo/database.ex)
+Here we change store/2 and get/1 to work with the new Poolboy interface
 #### Listing 11.7 Adapted worker interface functions (todo_poolboy/lib/todo/database.ex)
+Here we change the worker interface functions to work with the new Poolboy toolbox. Mostly, we get ride of the viatuple stuff.
 ### 11.2.3 Visualizing the system
+We can visualize the application using the observer.
 #### Figure 11.1 Observing the application
 ## 11.3
 ### 11.3.1 Choosing dependencies
