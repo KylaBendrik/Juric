@@ -56,8 +56,11 @@ Mix projects use three environments: dev, test, and prod. You can specify an env
   - you may want a different database to prevent tests from polluting your dev database.
   - test is the default environment when you invoke `mix test`
 ## 11.2 Working with Dependencies
+It's helpful to use third-party libraries, such as web frameworks, JSON parsers, or database drivers. In this section, we are going to clean up our implementation of database workers and use a proven process pool library instead.
 ### 11.2.1 Adding a dependency
+We'll be working with the Poolboy library, which provides an implementation of a process pool. I created a new branch in my todo project named `poolboy`
 #### Listing 11.4 Adding an external dependency (todo_poolboy/mix.exs)
+In the `mix.exs` file, add `:poolboy` to the list of dependencies. There are probably example dependencies listed as comments in this function, but probably no real ones yet.
 ### 11.2.2 Adapting the pool
 #### Listing 11.5 Starting a Poolboy-powered pool (todo_poolboy/lib/todo/database.ex)
 #### Listing 11.6 Adapted operation functions (todo_poolboy/lib/todo/database.ex)
