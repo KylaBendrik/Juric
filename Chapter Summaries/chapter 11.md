@@ -24,6 +24,26 @@ We're now adding the callback module, creating a new file `application.ex`, defi
 Now, all it takes to start the Todo app is to run iex.bat -S mix
 (it also pops up memory_usage info, which is interesting)
 #### Listing 11.3 Testing server_process (todo_app/test/todo_cache_test.exs)
+The only change I'm seeing here, is that we no longer have to pass Todo.Cache.server_process the cache. Not sure why.
+```elixir
+  test "server_process" do
+    {:ok, cache} = Todo.Cache.start()
+    bob_pid = Todo.Cache.server_process(cache, "bob")
+
+    assert bob_pid != Todo.Cache.server_process(cache, "alice")
+    assert bob_pid == Todo.Cache.server_process(cache, "bob")
+  end
+```
+Turns into
+```elixir
+  test "server_process" do
+    bob_pid = Todo.Cache.server_process("bob")
+
+    assert bob_pid != Todo.Cache.server_process("alice")
+    assert bob_pid == Todo.Cache.server_process("bob")
+  end
+```
+It says "inside Todo.CacheTest you needed to manually start the supporting processes, such aas cache. With the system turned into a proper OTP application, this is not the case anymore, as you can see..." But doesn't server_process still expect a `cache` argument?
 ### 11.1.6 The application folder structure
 ## 11.2 Working with Dependencies
 ### 11.2.1 Adding a dependency
