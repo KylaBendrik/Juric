@@ -81,6 +81,7 @@ Here we change the worker interface functions to work with the new Poolboy toolb
 ### 11.2.3 Visualizing the system
 We can visualize the application using the observer.
 #### Figure 11.1 Observing the application
+You can see the top level supervisor, the three children, and the to-do servers.
 ## 11.3
 ### 11.3.1 Choosing dependencies
 #### Listing 11.8 External dependencies for the web server (todo_web/mix.exs)
