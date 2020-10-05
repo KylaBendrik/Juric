@@ -8,10 +8,21 @@ mix new hello_world --sup creates a folder with the minimum mix project skeleton
 ### 11.1.2 The application behavior
 HelloWorld.Application.start/2 is the function that will start the application. This starts the top-level process of the system, usually a supervisor, and returns a tuple of {:ok, pid} or {:error, reason}
 ### 11.1.3 Starting the application
+You can start the application by calling Application.start(:hello_world), and it may return an error if the application is already running. This is extra info that you won't usually need to use, because mix automatically starts the application with its dependencies. You can't start multiple instances of a single application. You can stop using Application.stop(:hello_world). This will exit only the specified app, in a polite way.
 ### 11.1.4 Library applications
+Library applications are components that don't need supervision trees. Usually simpler apps, such as a JSON parser. There's no callback module, so no top-level process to be started. It's only a toolbox that can be used by other applications. It doesn't do much on its own. ?
 ### 11.1.5 Creating a to-do application
+In this section, we're going to take the OTP app we've been making and turn it into a full-blown application with a callback module and supervision tree. Simplified system startup! Yay!
 #### Listing 11.1 Specifying appliction parameters (todo_app/mix.exs)
+This listing shows the mix.exs file from our previous todo app, with some slight changes. Specifically, it adds line 17 to application/0 : 
+```elixir
+  mod: {Todo.Application, []}
+```
+This adds the callback module.
 #### Listing 11.2 Implementing the application module (todo_app/lib/todo/application.ex)
+We're now adding the callback module, creating a new file `application.ex`, defining one function: `start/2`
+Now, all it takes to start the Todo app is to run iex.bat -S mix
+(it also pops up memory_usage info, which is interesting)
 #### Listing 11.3 Testing server_process (todo_app/test/todo_cache_test.exs)
 ### 11.1.6 The application folder structure
 ## 11.2 Working with Dependencies
