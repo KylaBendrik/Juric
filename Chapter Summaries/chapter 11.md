@@ -6,10 +6,20 @@ libs and HTTP interface.
 
 ## 11.1 OTP applications
 OTP-Apps are a component that has mulitiple modules.
-
+OTP-Apps can be started with a single function call 
+and are easy to turn into an application as we will se in the next section.
 
 ### 11.1.1 Creating applications with the mix tool
+Applications are an OTP-specific construct.
+Using the mix tool is a great way to start an Application.
+Mix creates the application resource flies nessisary to begin a project 
+and also compilies it. The Mix project can also be run in iex. 
+You as the progemer give it the nessisary information by making new files, giving 
+it a name, writting tests, and filling out the mix.exs file.
+
 ### 11.1.2 The application behavior
+
+
 ### 11.1.3 Starting the application
 ### 11.1.4 Library applications
 ### 11.1.5 Creating a to-do application
