@@ -84,6 +84,7 @@ We can visualize the application using the observer.
 You can see the top level supervisor, the three children, and the to-do servers.
 ## 11.3 Building a web server
 Time to create the HTTP interface. (a la Pragmatic Studio?). We're going to focus on only `entries` and `add-entry` requests, not including update or delete. I assume we'll work on those in the future, or will be expected to make those for the exercise.
+## 11.3 Building a web server
 ### 11.3.1 Choosing dependencies
 Unfortunately, we won't be touching Phoenix at this time. We won't be using Cowboy directly (I think we did in an earlier book?). We'll be using Plug. Plug uses "middleware modules" that can be injected into the request-handling pipe.
 #### Listing 11.8 External dependencies for the web server (todo_web/mix.exs)
@@ -122,8 +123,8 @@ casts are fire-and-forget
 call expects a response
 
 If you use a cast, you will immediately get a success response, but it may not accurately reflect whether or not the outcome of the request was successful.
-#### Figure 11.5 Using calls promotes consistency but reduces the responsiveness of the system
 Using calls will be more accurate, but slower.
+#### Figure 11.5 Using calls promotes consistency but reduces the responsiveness of the system
 #### Figure 11.6 Queueing the request and sending a notification about the status
 You can resolve some of the slowness by adding an intermidate process, queing the requests, so you can immediately reply that the request has been queued, but not slow the client down with a call. This isn't necessary for small applications. Only usefull for high-load operations.
 ## 11.4 Configuring applications
