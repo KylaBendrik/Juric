@@ -1,5 +1,8 @@
 # 7 Building a concurrent system
+Elixir/Erlang systems are powered by a multitude of processes, many of which are stateful server processes.
+Ultimate goal is to build a distributed HTTP server that can handle many end users who are simultaneously manipulating many to-do lists.
 ## 7.1 Working with the mix project
+`mix new projectname` is how you generate a new blank elixir project
 ## 7.2 Managing multiple to-do lists
 ### 7.2.1 Implementing a cache
 #### Listing 7.1 Cache initialization (todo_cache/lib/todo/cache.ex)
