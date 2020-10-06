@@ -18,7 +18,7 @@
 #### Listing 11.7 Adapted worker interface functions (todo_poolboy/lib/todo/database.ex)
 ### 11.2.3 Visualizing the system
 #### Figure 11.1 Observing the application
-## 11.3
+## 11.3 Building a web server
 ### 11.3.1 Choosing dependencies
 #### Listing 11.8 External dependencies for the web server (todo_web/mix.exs)
 ### 11.3.2 Starting the server
@@ -32,7 +32,7 @@
 #### Figure 11.2 Requests are handled in separate processes
 #### Figure 11.3 Independent simultaneous requests are handled concurrently
 #### Figure 11.4 Using casts reduces the certainty of your reponses
-#### Figure 11.5 Usinng calls promotes consistency but reduces the responsiveness of the system
+#### Figure 11.5 Using calls promotes consistency but reduces the responsiveness of the system
 #### Figure 11.6 Queueing the request and sending a notification about the status
 ## 11.4 Configuring applications
 ### 11.4.1 Application environment
