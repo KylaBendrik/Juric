@@ -7,10 +7,11 @@ I used markdown to indicate the different sections:
 ### 1.1.1 Minor section
 #### Listings (code snippets) and Figures (often graphs or other images)
 > *Asides*
-> These are grey and indented in the book.
+These are grey and indented in the book.  
+
 **Smaller named sections** These are bold, smaller font in the book
 
-Here's how you use it:
+Here's how you use it:  
 
 1. Clone the repo.
 2. Under each heading in the markdown files, type in one or more sentences summarizing this section, figure, code snippet, etc.
