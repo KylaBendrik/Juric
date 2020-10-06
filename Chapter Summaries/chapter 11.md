@@ -83,8 +83,11 @@ We can visualize the application using the observer.
 #### Figure 11.1 Observing the application
 You can see the top level supervisor, the three children, and the to-do servers.
 ## 11.3
+Time to create the HTTP interface. (a la Pragmatic Studio?). We're going to focus on only `entries` and `add-entry` requests, not including update or delete. I assume we'll work on those in the future, or will be expected to make those for the exercise.
 ### 11.3.1 Choosing dependencies
+Unfortunately, we won't be touching Phoenix at this time. We won't be using Cowboy directly (I think we did in an earlier book?). We'll be using Plug. Plug uses "middleware modules" that can be injected into the request-handling pipe.
 #### Listing 11.8 External dependencies for the web server (todo_web/mix.exs)
+This one shows how to add `:cowboy` and `:plug` dependencies.
 ### 11.3.2 Starting the server
 #### Listing 11.9 HTTP server specification (todo_web/lib/todo/web.ex)
 #### Listing 11.10 Starting the HTTP server (todo_web/lib/todo/system.ex)
