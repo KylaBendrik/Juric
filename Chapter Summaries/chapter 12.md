@@ -12,6 +12,7 @@
 > *How global registration works*
 
 > *Recognizing remote processes*
+
 **Groups of processes**
 ### 12.1.4 Links and monitors
 ### 12.1.5 Other distribution services
