@@ -24,13 +24,46 @@ and define some callback functions.
 The callback module must contain the start/2 function.
 
 ### 11.1.3 Starting the application
+To start the application call Application.start/1.
+When start is called the app interprets the contents of the file, verifies 
+which dependent apps are started, and then calls back the apps start/2 function. 
+You can’t start multiple instances of a single application much like a singleton.
+Stopping an application terminates its top-level process.
+Application.stop/1 stops only the specified application, leaving dependencies
+(other applications) running.
+
 ### 11.1.4 Library applications
+There’s no application callback module, which means there is no top-level
+process to start but it still is a OTP process so it can start and stop.
+This technique is used for library applications:
+components that don’t need to create their own supervision tree. As the name indicates,
+these are usually simpler libraries; a typical example is a JSON parser
+
 ### 11.1.5 Creating a to-do application
+The to-do system runs a set of its own processes under a supervision tree, it
+makes sense to turn it into a full-blown application.
+Once you properly implement the application callback module,
+the system can be automatically started as soon as you run iex -S mix.
+Inside TodoCacheTest you needed to
+manually start the supporting processes, such as cache.
+
 #### Listing 11.1 Specifying appliction parameters (todo_app/mix.exs)
 #### Listing 11.2 Implementing the application module (todo_app/lib/todo/application.ex)
 #### Listing 11.3 Testing server_process (todo_app/test/todo_cache_test.exs)
 ### 11.1.6 The application folder structure
+Mix environments: This is a compile-time option that can be used to affect the shape of the compiled code.
+Mix projects use three environments: dev, test, and prod. These three environments
+produce slight variations in the compiled code.
+
+The compiled code structure: Because dev is the default environment, if you run mix compile or iex -S mix, you
+get binaries in the _build/dev folder. In addition to your application, the lib folder contains your compile-time dependencies.
+When you attempt to start the application, the generic
+application behavior looks for the resource file in the load paths (the same paths that are
+searched for compiled binaries).
+
 ## 11.2 Working with Dependencies
+
+
 ### 11.2.1 Adding a dependency
 #### Listing 11.4 Adding an external dependency (todo_poolboy/mix.exs)
 ### 11.2.2 Adapting the pool
