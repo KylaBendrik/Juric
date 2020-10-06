@@ -18,7 +18,10 @@ You as the progemer give it the nessisary information by making new files, givin
 it a name, writting tests, and filling out the mix.exs file.
 
 ### 11.1.2 The application behavior
-
+The Module description starts the application.
+To be able to work with Application, you must implement your own callback module
+and define some callback functions.
+The callback module must contain the start/2 function.
 
 ### 11.1.3 Starting the application
 ### 11.1.4 Library applications
