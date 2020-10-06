@@ -123,8 +123,8 @@ casts are fire-and-forget
 call expects a response
 
 If you use a cast, you will immediately get a success response, but it may not accurately reflect whether or not the outcome of the request was successful.
-Using calls will be more accurate, but slower.
 #### Figure 11.5 Using calls promotes consistency but reduces the responsiveness of the system
+Using calls will be more accurate, but slower.
 #### Figure 11.6 Queueing the request and sending a notification about the status
 You can resolve some of the slowness by adding an intermidate process, queing the requests, so you can immediately reply that the request has been queued, but not slow the client down with a call. This isn't necessary for small applications. Only usefull for high-load operations.
 ## 11.4 Configuring applications
