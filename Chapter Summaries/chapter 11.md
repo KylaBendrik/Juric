@@ -127,10 +127,18 @@ Using calls will be more accurate, but slower.
 #### Figure 11.6 Queueing the request and sending a notification about the status
 You can resolve some of the slowness by adding an intermidate process, queing the requests, so you can immediately reply that the request has been queued, but not slow the client down with a call. This isn't necessary for small applications. Only usefull for high-load operations.
 ## 11.4 Configuring applications
+You can provide application environment values in config script files.
 ### 11.4.1 Application environment
+Instead of hard-coding the port # in `web`, let's make assign it in the application environment.
 #### Listing 11.14 Configuring the HTTP port (todo_env/config/config.exs)
+We need to make a new folder (config) and a new file (config.exs), and put in these two lines. We can now use `Application.get_env/2` to get this environment variable. (How are these related to OS environment variables?)
 #### Listing 11.15 Fetching the http_port setting (todo_env/lib/todo/web.ex)
+`Use Application.get_env/2` to get the environment variable we set up earlier.
 ### 11.4.2 Varying configuration
+If we keep it set up this way, we can't run tests if the system is running.
 #### Listing 11.16 Mix environment-specific settings (todo_env/config/config.exs)
+`import_config "#{Mix.env()}.exs"` imports the configuration specific to the current mix environmen. Mix.env() returns the environment as an atom (:dev, :test, :prod) (see section 11.1.6)
 #### Listing 11.17 Overriding configuration (todo_env/config/test.exs)
+Here we are setting up a different HTTP port for the test environment. Easily missed is the line that says we need to set up dev.exs and prod.exs. I'm not going to set up prod.exs at the moment, because I'm not sure if we're supposed to...
 ### 11.4.3 Config script considerations
+The config files are evaluated before the project is compiled, so we're limited in what we can do in such scripts. You can't make runtime decisions in config scripts.
