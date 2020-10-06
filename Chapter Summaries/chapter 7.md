@@ -3,7 +3,16 @@ Elixir/Erlang systems are powered by a multitude of processes, many of which are
 Ultimate goal is to build a distributed HTTP server that can handle many end users who are simultaneously manipulating many to-do lists.
 ## 7.1 Working with the mix project
 `mix new projectname` is how you generate a new blank elixir project
+> *Tip* 
+Find out more about mix in the docs. This book won't go into much detail
+
+file naming conventions:
+ - place modules under common top-level alias (Todo.List, Todo.Server)
+ - one module per file
+ - filenames snake case, module names camelc case
+ - folder structure should correspond to module names (Todo.Server in todo/server.ex)
 ## 7.2 Managing multiple to-do lists
+We can either implement a TodoListCollection abstraction to work with multiple to-do lists or run one instance of the to-do server for each to-do list. The first approach isn't very scalable, since you'd only have one process to serve all the users. You need a separate entity - the cache - to create new list servers or fetch existing ones
 ### 7.2.1 Implementing a cache
 #### Listing 7.1 Cache initialization (todo_cache/lib/todo/cache.ex)
 #### Listing 7.2 Handling the `server_process` request (todo_cache/lib/todo/cache.ex)
