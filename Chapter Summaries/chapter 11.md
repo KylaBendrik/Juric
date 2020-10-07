@@ -62,15 +62,36 @@ application behavior looks for the resource file in the load paths (the same pat
 searched for compiled binaries).
 
 ## 11.2 Working with Dependencies
-
+Depending on third-party libraries is important to understand.
+Such libraries can simplify various side concerns, prevent you from going
+down too many rabbit holes, and allow you to focus on the core challenges of your
+system. Managing a pool of processes is a frequent pattern in Elixir and
+Erlang, so a couple of third-party libraries offer a solution to this challenge.
 
 ### 11.2.1 Adding a dependency
+Poolboy library provides a mature implementation of a process pool.
+An external dependency is specified as a tuple. The first element is always an atom,
+which should correspond to the application name of the dependency.
+Here you indicate that you
+want version 1.5 or any later 1.x version.
+At this point, you’ve specified that your project depends on an external library, so
+you need to fetch your dependencies. This can be done by running mix deps.get from
+the command line.
+
 #### Listing 11.4 Adding an external dependency (todo_poolboy/mix.exs)
 ### 11.2.2 Adapting the pool
+Pool implementation works like this: There’s one process that manages a pool of workers.
+When you start this process, you pass the desired pool size (the number of worker processes),
+and the module that powers each worker. By doing the
+checkout/checkin dance, the pool manager can keep track of which worker processes
+are being used. If some workers are available, a client can immediately get a worker.
+
 #### Listing 11.5 Starting a Poolboy-powered pool (todo_poolboy/lib/todo/database.ex)
 #### Listing 11.6 Adapted operation functions (todo_poolboy/lib/todo/database.ex)
 #### Listing 11.7 Adapted worker interface functions (todo_poolboy/lib/todo/database.ex)
 ### 11.2.3 Visualizing the system
+An observer helps to vistulize the app you're creating using a GUI window.
+
 #### Figure 11.1 Observing the application
 ## 11.3
 ### 11.3.1 Choosing dependencies
