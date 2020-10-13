@@ -1,6 +1,9 @@
 # 12 Building a distributed system
+Let's make this system more reliable. In this chapter, "distributed" may refer more to using multiple "nodes" running the system, rather than packaging the app and sending it to customers.
 #### Figure 12.1 To to-do system as a cluster
+Clients can speak to one of three nodes, each of which is running Todo.Server and Todo.Database. 
 ## 12.1 Distribution primitives
+BEAM-powered systems are built by connecting multiple nodes into a cluster
 ### 12.1.1 Starting a cluster
 > *Detecting disconnected nodes*
 ### 12.1.2 Communicating between nodes
