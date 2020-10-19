@@ -5,10 +5,19 @@ Clients can speak to one of three nodes, each of which is running Todo.Server an
 ## 12.1 Distribution primitives
 BEAM-powered systems are built by connecting multiple nodes into a cluster
 ### 12.1.1 Starting a cluster
+To set up a cluster, you need to start a couple of nodes. Use --sname parameter while starting the shell. The --sname turns the BEAM instance into a node with the name provided.
+ - node() gives you the name of the node (in this case, :node1@localhost)
+ - Node.connect() lets you connect the two nodes. Use the atom style above ^ It will automatically connect connected nodes.
+ - Node.monitor/1 lets you register and recived notifications when a node is disconnected.
 > *Detecting disconnected nodes*
+Node.monitor/1 lets you register and recived notifications when a node is disconnected.
+You can also use :net_kernal.monitor_nodes. Each node periodically tries to check to see if they're connected to the other nodes.
 ### 12.1.2 Communicating between nodes
+Node.spawn/2 recieves a node name and a lambda. It spawns a new process on the target node and runs the lambda in that process.
 #### Listing 12.1 Spawning a process on another node
+Use Node.spawn/2 to tell a process to run on another node.
 > *Group leader process*
+I noticed while doing this that the IO.puts was printing on the node I inputted Node.spawn in, instead of the one I told to run the lambda. All standard IO calls are forwarded to the *group leader*. Basically, it'll use the other nodes to run the behind the scenes stuff, but use the node you're obviously able to communicate with to print stuff for the user.
 
 > *Avoid spawnign lamdas or sending them to different nodes*
 ### 12.1.3 Process discovery
