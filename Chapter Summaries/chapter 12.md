@@ -14,12 +14,14 @@ Node.monitor/1 lets you register and recived notifications when a node is discon
 You can also use :net_kernal.monitor_nodes. Each node periodically tries to check to see if they're connected to the other nodes.
 ### 12.1.2 Communicating between nodes
 Node.spawn/2 recieves a node name and a lambda. It spawns a new process on the target node and runs the lambda in that process.
+You can use the fn -> to send a message back, using send(self(), {:response, 1+2})
+Then use iex's flush/0 function, which takes all messages fromt the current process mailbox and prints them to the console.
 #### Listing 12.1 Spawning a process on another node
 Use Node.spawn/2 to tell a process to run on another node.
 > *Group leader process*
 I noticed while doing this that the IO.puts was printing on the node I inputted Node.spawn in, instead of the one I told to run the lambda. All standard IO calls are forwarded to the *group leader*. Basically, it'll use the other nodes to run the behind the scenes stuff, but use the node you're obviously able to communicate with to print stuff for the user.
 
-> *Avoid spawnign lamdas or sending them to different nodes*
+> *Avoid spawning lambdas or sending them to different nodes*
 ### 12.1.3 Process discovery
 > *How global registration works*
 
